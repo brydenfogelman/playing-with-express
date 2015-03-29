@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Playing with Servers</title>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>Load some data from an express.js server!</h1>
+<!--        <form action="http://localhost:3000/people" method="get">-->
+<!--            <button id="btn" type="submit">Click here!</button>-->
+            <div id="json"><
+                
+            /div>
+<!--        </form>-->
+<!--       src="simple-app-ajax.js"-->
+        <script type="text/javascript">
+            $.ajax({
+                url: 'http://localhost:3000/people',
+                type: 'get',
+                dataType: 'json',
+                //dataType: 'jsonp',
+                //jsonp: 'callback',
+                /*data: {
+                    format: 'json'
+                },
+                */
+                success: function(data) {
+                    console.log(data);
+                    var person1 = data[0]
+                    var person2 = data[1]
+                    console.log(person1);
+                    console.log(person2);
+                    Object {name: "john smith", age: 25, citizenship: "Canada"}
+                    $('#json').html(data[0].age);
+                },
+                error: function() {
+                    alert('an error has occured');
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -8,6 +8,18 @@ app.get('/', function (req, res) {
 })
 */
 
+//var __dirname = '/Users/brydenfogelman/Desktop/ghthouse/playing-with-express/test-app';
+
+app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/public/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.get('/home', function (req, res) {
+    res.render('index.html');
+    //res.send('hello');
+})
+
 app.get('/people', function (req, res) {
     var json_data = [{
        name: 'john smith',
@@ -24,8 +36,8 @@ app.get('/people', function (req, res) {
     //res.send("hello world")
 })
 
-app.listen(3000);
-/*
+//app.listen(3000);
+
 var server = app.listen(3000, function () {
 
   var host = server.address().address
@@ -34,4 +46,3 @@ var server = app.listen(3000, function () {
   console.log('Example app listening at http://%s:%s', host, port)
 
 })
-*/
