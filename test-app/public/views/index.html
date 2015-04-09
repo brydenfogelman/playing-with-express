@@ -2,36 +2,26 @@
 <html>
     <head>
         <title>Playing with Servers</title>
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     </head>
     <body>
         <h1>Load some data from an express.js server!</h1>
-<!--        <form action="http://localhost:3000/people" method="get">-->
-<!--            <button id="btn" type="submit">Click here!</button>-->
-            <div id="json"><
-                
-            /div>
-<!--        </form>-->
-<!--       src="simple-app-ajax.js"-->
+        <div id="json">
+            <p>People:</p>
+            <!--json data will be displayed here-->
+        </div>
         <script type="text/javascript">
             $.ajax({
                 url: 'http://localhost:3000/people',
                 type: 'get',
                 dataType: 'json',
-                //dataType: 'jsonp',
-                //jsonp: 'callback',
-                /*data: {
-                    format: 'json'
-                },
-                */
+                // prepares the data to be displayed on the html page
                 success: function(data) {
                     console.log(data);
-                    var person1 = data[0]
-                    var person2 = data[1]
-                    console.log(person1);
-                    console.log(person2);
-                    Object {name: "john smith", age: 25, citizenship: "Canada"}
-                    $('#json').html(data[0].age);
+                    var person1_to_s = data[0].name + ", " + data[0].age + ", " + data[0].citizenship
+                    var person2_to_s = data[1].name + ", " + data[1].age + ", " + data[1].citizenship
+                    $('#json').append("<p>" + person1_to_s + "</p>");
+                    $('#json').append("<p>" + person2_to_s + "</p>");
                 },
                 error: function() {
                     alert('an error has occured');
